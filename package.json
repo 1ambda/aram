@@ -1,0 +1,15 @@
+{
+    "name": "passport-example",
+    "version": "0.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+				"start": "NODE_ENV=development node app.js",
+				"test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "anster",
+    "license": "MIT",
+    "dependencies": {
+				"mongoose": "latest"
+    }
+}
