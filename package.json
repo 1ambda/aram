@@ -1,15 +1,21 @@
 {
-    "name": "passport-example",
-    "version": "0.0.0",
-    "description": "",
-    "main": "app.js",
-    "scripts": {
-				"start": "NODE_ENV=development node app.js",
-				"test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "anster",
-    "license": "MIT",
-    "dependencies": {
-				"mongoose": "latest"
-    }
+  "name": "passport-example",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=development node app.js",
+    "test": "NODE_ENV=test mocha --reporter spec test/test-*.js"
+  },
+  "author": "anster",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "latest",
+    "passport": "latest",
+    "passport-facebook": "latest"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "should": "latest"
+  }
 }
