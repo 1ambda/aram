@@ -1,6 +1,6 @@
 # 500-revive
 
-revive web service automaticall
+revive web service automatically
 
 1. passport-local, facebook, google
 2. BDD using mocha
@@ -10,7 +10,7 @@ revive web service automaticall
 
 1. Express4 Router
 2. MongoDB virtual
-3. Loging with winston
+3. Logging with winston
 
 ### Requirement
 
