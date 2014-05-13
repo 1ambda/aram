@@ -6,6 +6,12 @@ revive web service automaticall
 2. BDD using mocha
 3. `spookyjs` with `casperJS`, `phantomJS`
 
+### Todo
+
+1. Express4 Router
+2. MongoDB virtual
+3. Loging with winston
+
 ### Requirement
 
 ```
