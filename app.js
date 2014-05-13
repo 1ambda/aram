@@ -3,25 +3,11 @@
 var env = process.env.NODE_ENV || 'development';
 
 // Get config
+var config = require('./config/config')[env];
 
-// Load npm modules
-var mongoose = require('mongoose'),
-    config = require('./config/config')[env];
+var worker = require('./util/accounts');
 
-// Connect mongoDB
-var connect = function() {
-  var options = { server: { socketOptions: { keepAlive: 1 } } };
-  mongoose.connect(config.db, options);
-};
 
-connect();
+var site = "https://accounts.openknowl.com/public";
 
-// Error Handling when database error occurs
-
-mongoose.connection.on('error', function(err) {
-  console.log(err);
-});
-
-mongoose.connection.on('disconnected', function() {
-  connect();
-});
+worker(site);

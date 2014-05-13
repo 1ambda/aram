@@ -12,7 +12,8 @@
   "dependencies": {
     "mongoose": "latest",
     "passport": "latest",
-    "passport-facebook": "latest"
+    "passport-facebook": "latest",
+    "spooky": "^0.2.4"
   },
   "devDependencies": {
     "mocha": "latest",
