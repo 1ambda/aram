@@ -4,5 +4,6 @@ module.exports = {
   },
   
   "test": {
+    db: 'mongodb://planner:collector@localhost/workspace'
   }
 };
