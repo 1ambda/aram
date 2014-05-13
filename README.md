@@ -6,3 +6,11 @@ revive web service automaticall
 2. BDD using mocha
 3. `spookyjs` with `casperJS`, `phantomJS`
 
+### Requirement
+
+```
+npm install -g phantomjs
+npm install -g casperjs
+npm install -g mocha
+```
+
