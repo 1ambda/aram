@@ -17,9 +17,10 @@ ejs.close = '}}';
 module.exports = function(app, config) {
 
   var env = config.mode || 'development';
+  var port = config.port || process.env.PORT || 3000;
 
   // Set application config
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', port);
   app.set('views', path.join(__dirname, '../app/views'));
   app.engine('html', ejs.renderFile);
   app.set('view engine', 'html');
@@ -38,6 +39,7 @@ module.exports = function(app, config) {
   // Depoly options
   if(env == 'development') {
     app.use(morgan('dev'));
+    console.log('\n\tStarting Express PORT : ' + port + "\n");
   }
 
   if(env == 'production') {

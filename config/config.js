@@ -1,7 +1,8 @@
 module.exports = {
   "development": {
     "db": 'mongodb://planner:collector@localhost/workspace',
-    "mode": "development"
+    "mode": "development",
+    "port": 3000
     
   },
   
@@ -12,6 +13,7 @@ module.exports = {
 
   "production": {
     "db": 'mongodb://planner:collector@localhost/workspace',
-    "mode": "production"
+    "mode": "production",
+    "port": 3000
   }
 };

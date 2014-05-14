@@ -1,17 +1,16 @@
+var home = require('../app/controllers/home');
+
 module.exports = function(app) {
 
   var express = require('express');
-  var router = express.Router();
+  var api = express.Router();
 
-  router.use(function(req, res, next) {
-    // do whatever
+  api.use(function(req, res, next){
     next();
   });
 
-  router.get('/', function(req, res) {
-    res.render('index', { title : 'Hello Express4',
-			  text : 'Welcome!' });
-  });
+  api.route('/')
+    .get(home.index);
 
-  app.use('/', router);
+  app.use('/', api);
 };

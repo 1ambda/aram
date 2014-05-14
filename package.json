@@ -16,7 +16,7 @@
     "errorhandler": "latest",
     "express": "latest",
     "express-session": "latest",
-		"method-override": "latest",
+    "method-override": "latest",
     "mongoose": "latest",
     "morgan": "latest",
     "passport": "latest",
@@ -25,6 +25,7 @@
     "spooky": "latest"
   },
   "devDependencies": {
+    "grunt": "latest",
     "should": "latest"
   }
 }
