@@ -8,6 +8,8 @@ revive web service automatically
 
 ### Todo
 
+- semantic-ui
+- grunt-mocha-test
 - Grunt build css, uglify script
 - less
 - MongoDB virtual
@@ -20,5 +22,6 @@ revive web service automatically
 npm install -g phantomjs
 npm install -g casperjs
 npm install -g mocha
+npm install -g grunt-cli
 ```
 

@@ -26,8 +26,10 @@
   },
   "devDependencies": {
     "grunt": "latest",
+    "grunt-contrib-csslint": "^0.2.0",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-watch": "latest",
+    "grunt-express-server": "^0.4.17",
     "grunt-htmlhint": "latest",
     "matchdep": "latest",
     "should": "latest"

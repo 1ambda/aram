@@ -3,40 +3,60 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      allWithDefaultOptions: ['public/javascripts/**/*.js'],
-      options: {
-	camelcase: true,
-	curly: true,
-	eqeqeq: true,
-	indent: 2,
-	newcap: true,
-	nonew: true,
-	undef: true,
-	unused: true,
-	strict: true,
-	evil: true,
-	laxcomma: true,
-
-	// Environments
-	browser: true,
-	devel: true,
-	jquery: true,
-	node: false
-	
-      },
-      nodehint: {
+      javascript: {
+	files: {
+	  src: ['public/javascripts/**/*.js']
+	},
 	options: {
+	  camelcase: true,
+	  curly: true,
+	  eqeqeq: true,
+	  indent: 2,
+	  newcap: true,
+	  nonew: true,
+	  undef: true,
+	  unused: true,
+	  strict: true,
+	  evil: true,
+	  laxcomma: true,
+
+	  // Environments
+	  browser: true,
+	  devel: true,
+	  jquery: true,
+	  node: false
+	  
+	}
+      },
+      nodejs: {
+	options: {
+	  camelcase: true,
+	  curly: true,
+	  eqeqeq: true,
+	  indent: 2,
+	  newcap: true,
+	  nonew: true,
+	  undef: true,
+	  unused: true,
+	  strict: true,
+	  evil: true,
+	  laxcomma: true,
+
+	  // Environments
+	  browser: true,
+	  devel: true,
 	  node: true,
 	  jquery: false
 	},
 	files: {
 	  src: ['app/**/*.js']
 	}
+	
       }
     },
     
     htmlhint: {
-      build: {
+      html: {
 	options: {
 	  'tag-pair': true,
 	  'tag-self-close': true,
@@ -56,20 +76,46 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: {
-      javascript: {
-	files: ['public/javascripts/**/*.js', 'app/**/*.js'],
-	tasks: ['jshint'],
+    csslint: {
+      strict: {
 	options: {
-	  spawn: false
-	}
+	  import: 2
+	},
+	src: ['public/stylesheets/**/*.css']
+      },
+      lax: {
+	options: {
+	  import: false
+	},
+	src: ['public/stylesheets/**/*.css']
+      }
+    },
+
+    watch: {
+      options: {
+	livereload: true
+      },
+      
+      javascript: {
+	files: ['public/javascripts/**/*.js'],
+	tasks: ['jshint:javascript']
+      },
+
+      css: {
+	files: ['public/stylesheets/**/*.css'],
+	tasks: ['csslint:lax']
       },
 
       html: {
 	files: ['app/views/**/*.html'],
-	tasks: ['htmlhint'],
+	tasks: ['htmlhint']
+      },
+      
+      nodejs: {
+	files: ['app/**/*.js', 'server.js', 'config/**/*.js'],
+	tasks: ['jshint:nodejs', 'express:dev'],
 	options: {
-	  spawn: false
+	  livereload: false
 	}
       },
 
@@ -79,7 +125,19 @@ module.exports = function(grunt) {
 	  reload: true
 	}
       }
+    },
+
+    express: {
+      options: {
+	node_env: 'development'
+      },
+      dev: {
+	options: {
+	  script: 'server.js'
+	}
+      }
     }
+    
     
   });
 
@@ -87,5 +145,5 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('lint', ['jshint', 'htmlhint']);
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['express:dev', 'watch']);
 };
