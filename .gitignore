@@ -1,4 +1,6 @@
 node_modules/
+public/bower_components/
+
 images-accounts/*
 !images-accounts/.gitkeep
 

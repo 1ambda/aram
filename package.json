@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development node app.js",
+    "start": "NODE_ENV=development node server.js",
     "test": "NODE_ENV=test mocha --reporter spec test/test-*.js"
   },
   "author": "anster",
@@ -26,6 +26,10 @@
   },
   "devDependencies": {
     "grunt": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-htmlhint": "latest",
+    "matchdep": "latest",
     "should": "latest"
   }
 }

@@ -8,9 +8,11 @@ revive web service automatically
 
 ### Todo
 
-1. Express4 Router
-2. MongoDB virtual
-3. Logging with winston
+- Grunt build css, uglify script
+- less
+- MongoDB virtual
+- Logging with winston
+
 
 ### Requirement
 

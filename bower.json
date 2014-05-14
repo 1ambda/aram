@@ -1,0 +1,24 @@
+{
+  "name": "500-revive",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ansterd/500-revive",
+  "authors": [
+    "ansterd <ansterd@nate.com>"
+  ],
+  "description": "automatically screen capture and revive webservice",
+  "main": "server.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic-ui": "~0.17.0",
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0"
+  }
+}

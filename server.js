@@ -1,10 +1,8 @@
 // Load modules
 var express = require('express');
-
 // Get configuration
 var env = process.env.NODE_ENV || 'development';
 var config = require('./config/config')[env];
-
 
 // Configure express
 var app = express();
