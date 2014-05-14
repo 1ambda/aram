@@ -1,4 +1,5 @@
 var home = require('../app/controllers/home');
+var spooky = require('../app/controllers/spooky');
 
 module.exports = function(app) {
 
@@ -11,6 +12,12 @@ module.exports = function(app) {
 
   api.route('/')
     .get(home.index);
+
+  api.route('/spooky/start')
+    .get(spooky.start);
+
+  api.route('/spooky/stop')
+    .get(spooky.stop);
 
   app.use('/', api);
 };
