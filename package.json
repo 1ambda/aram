@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=development node server.js",
-    "test": "NODE_ENV=test mocha --reporter spec test/test-*.js"
+    "test": "NODE_ENV=development mocha --reporter spec test/test-*.js"
   },
   "author": "anster",
   "license": "MIT",
@@ -26,11 +26,12 @@
   },
   "devDependencies": {
     "grunt": "latest",
-    "grunt-contrib-csslint": "^0.2.0",
+    "grunt-contrib-csslint": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-watch": "latest",
-    "grunt-express-server": "^0.4.17",
+    "grunt-express-server": "latest",
     "grunt-htmlhint": "latest",
+    "grunt-mocha-test": "^0.10.2",
     "matchdep": "latest",
     "should": "latest"
   }

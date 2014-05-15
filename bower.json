@@ -17,8 +17,8 @@
     "tests"
   ],
   "dependencies": {
-    "semantic-ui": "~0.17.0",
-    "jquery": "~2.1.1",
-    "underscore": "~1.6.0"
+    "semantic-ui": "latest",
+    "jquery": "latest",
+    "underscore": "latest"
   }
 }

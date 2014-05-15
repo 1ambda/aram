@@ -136,14 +136,23 @@ module.exports = function(grunt) {
 	  script: 'server.js'
 	}
       }
+    },
+
+    mochaTest: {
+      test: {
+	options: {
+	  reporter: 'spec'
+	},
+	src: ['test/**/*.js']
+      }
     }
-    
     
   });
 
   // Automatically load grunt-contrib modules defined in package.json
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('lint', ['jshint', 'htmlhint']);
-  grunt.registerTask('default', ['express:dev', 'watch']);
+  grunt.registerTask('lint', ['jshint', 'htmlhint', 'csslint']);
+  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('start', ['express:dev', 'watch']);
 };
