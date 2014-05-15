@@ -3,14 +3,52 @@
   <head>
     <title>{{= title }}</title>
     <link rel="stylesheet" href="bower_components/semantic-ui/build/packaged/css/semantic.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="stylesheets/common.css" type="text/css" media="screen" />
   </head>
   <body>
-    {{= text }}
+    <div class="container">
+      <h1 class="ui dividing header">Force-Revival</h1>
+
+      <div class="ui grid">
+        <div class="row">
+          <div class="twelve wide column">
+            <div class="ui three column divided grid">
+	      <!-- insert img tags based on files.length -->
+	      {{ if (files.length) { }}
+	      {{   var rowMax = Math.ceil(files.length / 3); }}
+	      {{   files.reverse(); }}
+	      {{   for (var i = 0; i < rowMax; i++) { }}
+	      <div class="row">
+		{{   for (var j = 0; j < 3; j++ ) { }}
+                <div class="column">
+		  {{   if (files.length) { }}
+		  <img src="site-images/{{= files.pop() }}" />
+		  {{   } }}
+		</div>
+		{{   } }}
+	      </div>
+	      {{   } }}
+	      {{ } }}
+	    </div>
+	  </div>
+          <div class="four wide column">
+            <div class="ui bulleted list">
+	      {{ for (var i = 0; i < files.length; i++) { }}
+              <div class="item">{{= files[i] }}</div>
+	      {{ } }}
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
 
     <script src="//localhost:35729/livereload.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="bower_components/semantic-ui/build/packaged/javascript/semantic.min.js" type="text/javascript"></script>
     <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
+
+    <!-- custom script -->
+    <script src="javascripts/script.js" type="text/javascript"></script>
     
   </body>
 </html>

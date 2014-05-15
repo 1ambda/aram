@@ -1,4 +1,6 @@
 module.exports = function(site) {
+  'use strict';
+  
   var Spooky;
   try {
     Spooky = require('spooky');
@@ -16,16 +18,16 @@ module.exports = function(site) {
     }
   }, function (err) {
     if (err) {
-      e = new Error('Failed to initialize SpookyJS');
-      e.details = err;
-      throw e;
+      err = new Error('Failed to initialize SpookyJS');
+      err.details = err;
+      throw err;
     }
 
     spooky.start(site);
     spooky.then(function () {
       var current = new Date();
-      this.captureSelector("./site-images/"+ current.toLocaleString() + '.jpg',
-			   'html', {
+      var dateString = current.toLocaleString('en-US').replace(/\s/g, '_');
+      this.captureSelector("./public/site-images/"+ dateString +'.jpg', 'html', {
 	format: "jpg",
 	quality: "100"
       });

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = function(config) {
-  
+  'use strict';
   // Connect mongoDB
   var connect = function() {
     var options = { server: { socketOptions: { keepAlive: 1 } } };

@@ -1,9 +1,10 @@
 var path = require('path');
 var rootDir = path.dirname(require.main.filename);
-var home = require(rootDir + '/app/controllers/home');
+var home = require(path.join(rootDir, 'app/controllers/home'));
 var spooky = require(rootDir + '/app/controllers/spooky');
 
 module.exports = function(app) {
+  'use strict';
 
   var express = require('express');
   var api = express.Router();

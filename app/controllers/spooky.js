@@ -6,6 +6,7 @@ var worker = function() {
   
   var site = "https://accounts.openknowl.com/public";
   var script = require(rootDir + '/app/util/accounts');
+  
   script(site);
 }
 ;

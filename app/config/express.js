@@ -4,7 +4,7 @@ var morgan = require('morgan'),
     session = require('express-session'),
     bodyParser = require('body-parser'),
     errorHandler = require('errorhandler'),
-    favicon = require('serve-favicon'),
+    // favicon = require('serve-favicon'),
     ejs = require('ejs'),
     path = require('path'),
     express = require('express');
@@ -14,10 +14,10 @@ ejs.open = '{{';
 ejs.close = '}}';
 
 module.exports = function(app, config) {
-
+  'use strict';
+  
   var env = config.mode || 'development';
   var port = config.port || process.env.PORT || 3000;
-  var path = require('path');
   var rootDir = path.dirname(require.main.filename);
 
   // Set application config
@@ -38,12 +38,12 @@ module.exports = function(app, config) {
   // app.use(favicon(__dirname + '/public/favicon.ico'));
 
   // Depoly options
-  if(env == 'development') {
+  if(env === 'development') {
     app.use(morgan('dev'));
     console.log('\n\tStarting Express PORT : ' + port + "\n");
   }
 
-  if(env == 'production') {
+  if(env === 'production') {
     // winston : http://nodeqa.com/nodejs_ref/5
   }
 
