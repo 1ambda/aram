@@ -9,11 +9,13 @@ revive web service automatically
 ### Todo
 
 - semantic-ui
-- grunt-mocha-test
+- nodemailer
 - Grunt build css, uglify script
 - less
-- MongoDB virtual
 - Logging with winston
+- passport
+- MongoDB virtual
+- csurf
 
 
 ### Requirement

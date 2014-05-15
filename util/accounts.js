@@ -24,7 +24,7 @@ module.exports = function(site) {
     spooky.start(site);
     spooky.then(function () {
       var current = new Date();
-      this.captureSelector("./images-accounts/"+ current.toLocaleString() + '.jpg',
+      this.captureSelector("./site-images/"+ current.toLocaleString() + '.jpg',
 			   'html', {
 	format: "jpg",
 	quality: "100"

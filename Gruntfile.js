@@ -98,7 +98,7 @@ module.exports = function(grunt) {
       
       javascript: {
 	files: ['public/javascripts/**/*.js'],
-	tasks: ['jshint:javascript']
+	tasks: ['jshint:javascript', 'mochaTest:javascript']
       },
 
       css: {
@@ -113,9 +113,17 @@ module.exports = function(grunt) {
       
       nodejs: {
 	files: ['app/**/*.js', 'server.js', 'config/**/*.js'],
-	tasks: ['jshint:nodejs', 'express:dev'],
+	tasks: ['jshint:nodejs', 'mochaTest:nodejs', 'express:dev'],
 	options: {
 	  livereload: false
+	}
+      },
+
+      test: {
+	files: ['test/**/*.js'],
+	tasks: ['mochaTest'],
+	options: {
+	  spawn: false
 	}
       },
 
@@ -139,11 +147,18 @@ module.exports = function(grunt) {
     },
 
     mochaTest: {
-      test: {
+      javascript: {
 	options: {
 	  reporter: 'spec'
 	},
-	src: ['test/**/*.js']
+	src: ['test/javascript/**/*.js']
+      },
+
+      nodejs: {
+	options: {
+	  reporter: 'spec'
+	},
+	src: ['test/nodejs/**/*.js']
       }
     }
     

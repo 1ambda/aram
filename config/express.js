@@ -13,20 +13,21 @@ var morgan = require('morgan'),
 ejs.open = '{{';
 ejs.close = '}}';
 
-
 module.exports = function(app, config) {
 
   var env = config.mode || 'development';
   var port = config.port || process.env.PORT || 3000;
+  var path = require('path');
+  var rootDir = path.dirname(require.main.filename);
 
   // Set application config
   app.set('port', port);
-  app.set('views', path.join(__dirname, '../app/views'));
+  app.set('views', path.join(rootDir, 'app/views'));
   app.engine('html', ejs.renderFile);
   app.set('view engine', 'html');
   
   // Use middlewares
-  app.use(express.static(path.join(__dirname, '/public')));
+  app.use(express.static(path.join(rootDir, 'public')));
   app.use(methodOverride());
   app.use(bodyParser());
   app.use(bodyParser.json());

@@ -1,11 +1,11 @@
 {
-  "name": "500-revive",
+  "name": "force-revival",
   "version": "0.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=development node server.js",
-    "test": "NODE_ENV=development mocha --reporter spec test/test-*.js"
+    "test": "NODE_ENV=development mocha --reporter spec test/**/*.js"
   },
   "author": "anster",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "grunt-contrib-watch": "latest",
     "grunt-express-server": "latest",
     "grunt-htmlhint": "latest",
-    "grunt-mocha-test": "^0.10.2",
+    "grunt-mocha-test": "latest",
     "matchdep": "latest",
     "should": "latest"
   }
