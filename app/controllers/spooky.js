@@ -1,8 +1,11 @@
+var path = require('path');
+var rootDir = path.dirname(require.main.filename);
+
 var worker = function() {
   'use strict';
-
+  
   var site = "https://accounts.openknowl.com/public";
-  var script = require('../../util/accounts');
+  var script = require(rootDir + '/app/util/accounts');
   script(site);
 }
 ;

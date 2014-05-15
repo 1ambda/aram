@@ -1,5 +1,7 @@
-var home = require('../app/controllers/home');
-var spooky = require('../app/controllers/spooky');
+var path = require('path');
+var rootDir = path.dirname(require.main.filename);
+var home = require(rootDir + '/app/controllers/home');
+var spooky = require(rootDir + '/app/controllers/spooky');
 
 module.exports = function(app) {
 
