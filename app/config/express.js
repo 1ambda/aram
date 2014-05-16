@@ -10,8 +10,8 @@ var morgan = require('morgan'),
     express = require('express');
 
 // Set ejs tag
-ejs.open = '{{';
-ejs.close = '}}';
+// ejs.open = '{{';
+// ejs.close = '}}';
 
 module.exports = function(app, config) {
   'use strict';

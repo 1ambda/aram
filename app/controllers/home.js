@@ -15,6 +15,6 @@ exports.index = function(req, res) {
     }
   });
 
-  res.render('index', { title: "Revive", files: files });
+  res.render('index');
 };
 

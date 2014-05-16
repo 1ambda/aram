@@ -24,7 +24,10 @@ module.exports = function(grunt) {
 	  browser: true,
 	  devel: true,
 	  jquery: true,
-	  node: false
+	  node: false,
+	  globals: {
+	    angular: true
+	  }
 	  
 	}
       },

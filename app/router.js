@@ -16,10 +16,10 @@ module.exports = function(app) {
   api.route('/')
     .get(home.index);
 
-  api.route('/spooky/start')
+  api.route('/api/v1/spooky/start')
     .get(spooky.start);
 
-  api.route('/spooky/stop')
+  api.route('/api/v1/spooky/stop')
     .get(spooky.stop);
 
   app.use('/', api);
