@@ -12,7 +12,6 @@ require(rootDir + '/app/config/express')(app, config);
 
 // Configure mongoose and Bootstrap models
 require(rootDir + '/app/config/mongoose')(config);
-// TODO: Bootstrap models
 
 // Configure routes
 require(rootDir + '/app/router')(app);

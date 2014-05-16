@@ -85,7 +85,8 @@ module.exports = function(grunt) {
       },
       lax: {
 	options: {
-	  import: false
+	  import: false,
+	  "adjoining-classes": false
 	},
 	src: ['public/stylesheets/**/*.css']
       }
@@ -167,7 +168,7 @@ module.exports = function(grunt) {
   // Automatically load grunt-contrib modules defined in package.json
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('lint', ['jshint', 'htmlhint', 'csslint']);
+  grunt.registerTask('lint', ['jshint', 'htmlhint', 'csslint:lax']);
   grunt.registerTask('test', ['mochaTest']);
-  grunt.registerTask('server', ['express:dev', 'watch']);
+  grunt.registerTask('server', ['test', 'express:dev', 'watch']);
 };

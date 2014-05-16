@@ -4,10 +4,15 @@ var rootDir = path.dirname(require.main.filename);
 var worker = function() {
   'use strict';
   
-  var site = "https://accounts.openknowl.com/public";
-  var script = require(rootDir + '/app/util/accounts');
+  var site = "https://accounts.openknowl.com/public",
+      saveDir = './public/site-images/',
+      imageDir = 'site-images/',
+      format = 'jpg',
+      tagToCapture = 'html',
+      tagToTest = '#info-welcometext',
+      script = require(rootDir + '/app/util/accounts');
   
-  script(site);
+  script(site, saveDir, imageDir, format, tagToCapture, tagToTest);
 }
 ;
 
@@ -23,7 +28,7 @@ exports.start = function(req, res) {
     isWorking = true;
   }
 
-  res.send(200);
+  res.send();
 };
 
 exports.stop = function(req, res) {
@@ -34,5 +39,5 @@ exports.stop = function(req, res) {
     isWorking = false;
   }
 
-  res.send(200);
+  res.send();
 };

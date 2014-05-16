@@ -1,4 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    path = require('path'),
+    fs = require('fs'),
+    rootDir = path.dirname(require.main.filename),
+    modelDir = path.join(rootDir, 'app/models');
 
 module.exports = function(config) {
   'use strict';
@@ -17,5 +21,12 @@ module.exports = function(config) {
 
   mongoose.connection.on('disconnected', function() {
     connect();
+  });
+
+  // Bootstrap models
+  fs.readdirSync(modelDir).forEach(function(file){
+    if ( ~file.indexOf('.js') ) {
+      require(modelDir + '/' + file);
+    }
   });
 };

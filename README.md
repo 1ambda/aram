@@ -8,10 +8,16 @@ revive web service automatically
 
 ### Todo
 
+1. ~~bootstrap model~~
+3. ~~spooky.js refactoring~~
+2. ~~save status data in spooky.js~~
+3. google chart
+4. AngularJS
+
 - semantic-ui
 - nodemailer
-- Grunt build css, uglify script
-- less
+- Grunt minify, uglify script and css
+- less, grunt-contrib-less
 - Logging with winston
 - passport
 - MongoDB virtual
@@ -25,5 +31,6 @@ npm install -g phantomjs
 npm install -g casperjs
 npm install -g mocha
 npm install -g grunt-cli
+npm install -g less
 ```
 

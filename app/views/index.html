@@ -6,39 +6,23 @@
     <link rel="stylesheet" href="stylesheets/common.css" type="text/css" media="screen" />
   </head>
   <body>
-    <div class="container">
-      <h1 class="ui dividing header">Force-Revival</h1>
 
-      <div class="ui grid">
-        <div class="row">
-          <div class="twelve wide column">
-            <div class="ui three column divided grid">
-	      <!-- insert img tags based on files.length -->
-	      {{ if (files.length) { }}
-	      {{   var rowMax = Math.ceil(files.length / 3); }}
-	      {{   files.reverse(); }}
-	      {{   for (var i = 0; i < rowMax; i++) { }}
-	      <div class="row">
-		{{   for (var j = 0; j < 3; j++ ) { }}
-                <div class="column">
-		  {{   if (files.length) { }}
-		  <img src="site-images/{{= files.pop() }}" />
-		  {{   } }}
-		</div>
-		{{   } }}
-	      </div>
-	      {{   } }}
-	      {{ } }}
-	    </div>
-	  </div>
-          <div class="four wide column">
-            <div class="ui bulleted list">
-	      {{ for (var i = 0; i < files.length; i++) { }}
-              <div class="item">{{= files[i] }}</div>
-	      {{ } }}
-	    </div>
-	  </div>
+    <!-- menu -->
+    <div class="ui fixed inverted menu">
+      <div class="container">
+        <a class="item" href="/">Force-Revival</a>
+        <div class="right item">
+          <a class="ui button" href="/spooky/stop">Stop Captrue</a>
 	</div>
+        <div class="right item">
+          <a class="ui teal button" href="/spooky/start">Start Capture</a>
+	</div>
+      </div>
+    </div>
+    
+    <div class="segment">
+      <div class="container">
+	
       </div>
     </div>
 
