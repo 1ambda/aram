@@ -2,6 +2,7 @@ var path = require('path');
 var rootDir = path.dirname(require.main.filename);
 var home = require(path.join(rootDir, 'app/controllers/home'));
 var spooky = require(rootDir + '/app/controllers/spooky');
+var image = require(rootDir + '/app/controllers/image');
 
 module.exports = function(app) {
   'use strict';
@@ -21,6 +22,9 @@ module.exports = function(app) {
 
   api.route('/api/v1/spooky/stop')
     .get(spooky.stop);
+
+  api.route('/api/v1/images/:site')
+    .get(image.getSiteStatusById);
 
   app.use('/', api);
 };

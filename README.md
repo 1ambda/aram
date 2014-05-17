@@ -8,11 +8,11 @@ revive web service automatically
 
 ### Todo
 
-1. ~~bootstrap model~~
-3. ~~spooky.js refactoring~~
-2. ~~save status data in spooky.js~~
-3. google chart
-4. AngularJS
+1. spooky.js save function refac to use 'nick'
+2. AngularJS, angular-google-chart
+3. ~~bootstrap model~~
+4. ~~spooky.js refactoring~~
+5. ~~save status data in spooky.js~~
 
 - semantic-ui
 - nodemailer

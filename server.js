@@ -16,5 +16,6 @@ require(rootDir + '/app/config/mongoose')(config);
 // Configure routes
 require(rootDir + '/app/router')(app);
 
+
 app.listen(app.get('port'));
 

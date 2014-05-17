@@ -11,8 +11,6 @@ angular.module('ForceRevivalApp.services', ['ngResource']).
     'use strict';
     return $resource('/api/v1/images/:site', {
       site: '@site'
-    },{
-      
     });
   });
   

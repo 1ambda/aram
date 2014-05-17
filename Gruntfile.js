@@ -116,10 +116,10 @@ module.exports = function(grunt) {
       },
       
       nodejs: {
-	files: ['app/**/*.js', 'server.js', 'config/**/*.js'],
+	files: ['app/**/*.js', 'server.js'],
 	tasks: ['jshint:nodejs', 'mochaTest:nodejs', 'express:dev'],
 	options: {
-	  livereload: false
+	  spawn: false
 	}
       },
 
