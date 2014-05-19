@@ -10,7 +10,7 @@ var worker = function() {
       format = 'jpg',
       tagToCapture = 'html',
       tagToTest = '#info-welcometext',
-      script = require(rootDir + '/app/util/accounts');
+      script = require(rootDir + '/app/util/spooky');
   
   script(site, saveDir, imageDir, format, tagToCapture, tagToTest);
 }

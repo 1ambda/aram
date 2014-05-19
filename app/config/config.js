@@ -7,7 +7,7 @@ module.exports = {
   },
   
   "test": {
-    "db": 'mongodb://planner:collector@localhost/workspace',
+    "db": 'mongodb://test-id:test-pw@localhost/test',
     "mode": "test"
   },
 

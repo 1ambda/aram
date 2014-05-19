@@ -1,5 +1,6 @@
 module.exports =
-  function(site, saveDir, imageDir, format, tagToCapture, tagToTest) {
+  function(siteName, url, saveDir, imageDir, format,
+	   tagToCapture, tagToTest, done) {
     'use strict';
 
     var mongoose = require('mongoose');
@@ -26,14 +27,16 @@ module.exports =
 	throw err;
       }
 
-      spooky.start(site);
+      spooky.start(url);
       spooky.then([{
-	site: site,
+	siteName: siteName,
+	url: url,
 	saveDir: saveDir,
 	imageDir: imageDir,
 	format: format,
 	tagToCapture: tagToCapture,
-	tagToTest: tagToTest
+	tagToTest: tagToTest,
+	done: done
       }, function () {
 	var current = new Date();
 	var dateString = current.toLocaleString('en-US').replace(/\s/g, '_');
@@ -43,7 +46,8 @@ module.exports =
 	});
 
 	this.emit('save', {
-	  site: site,
+	  siteName: siteName,
+	  url: url,
 	  date: current,
 	  imagePath: imageDir + dateString + '.' + format,
 	  serviceStatus: this.exists(tagToTest) ? true : false
@@ -78,6 +82,10 @@ module.exports =
 	if (err) {
 	  console.log(err);
 	  return;
+	}
+
+	if (done) {
+	  done();
 	}
       });
     });
