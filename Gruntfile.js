@@ -99,6 +99,16 @@ module.exports = function(grunt) {
       options: {
 	livereload: true
       },
+
+      javascriptTest: {
+	files: ['public/javascripts/**/*.js',
+		'test/javascript/**/test-*.js'],
+	tasks: ['mochaTest:javascript'],
+	options: {
+	  livereload: false,
+	  spwan: true
+	}
+      },
       
       javascript: {
 	files: ['public/javascripts/**/*.js'],
@@ -114,27 +124,41 @@ module.exports = function(grunt) {
 	files: ['app/views/**/*.html'],
 	tasks: ['htmlhint']
       },
-      
+
       nodejs: {
 	files: ['app/**/*.js', 'server.js'],
-	tasks: ['jshint:nodejs', 'mochaTest:nodejs', 'express:dev'],
+	tasks: ['jshint:nodejs', 'express:dev'],
 	options: {
-	  spawn: false
+	  spawn: false,
+	  livereload: false
 	}
       },
 
-      test: {
-	files: ['test/**/*.js'],
-	tasks: ['mochaTest'],
+      nodejsTest: {
+	files: ['app/**/*.js', 'server.js', 'test/nodejs/**/test-*.js'],
+	tasks: ['mochaTest:nodejs'],
 	options: {
-	  spawn: false
+	  spawn: true,
+	  livereload: false
 	}
       },
+
+      // nodejsApiTest: {
+      // 	files: ['app/controllers/**/*.js', 'app/router.js',
+      // 	        'test/nodejs/**/api-*.js'],
+      // 	tasks: ['mochaTest:nodejsApiTest'],
+      // 	options: {
+      // 	  spawn: true,
+      // 	  livereload: false
+      // 	}
+      // },
 
       configFiles: {
 	files: [ 'Gruntfile.js' ],
 	options: {
-	  reload: true
+	  reload: true,
+	  livereload: false
+
 	}
       }
     },
@@ -155,14 +179,21 @@ module.exports = function(grunt) {
 	options: {
 	  reporter: 'spec'
 	},
-	src: ['test/javascript/**/*.js']
+	src: ['test/javascript/**/test-*.js']
       },
 
       nodejs: {
 	options: {
 	  reporter: 'spec'
 	},
-	src: ['test/nodejs/**/*.js']
+	src: ['test/nodejs/**/test-*.js']
+      },
+
+      nodejsApiTest: {
+	options: {
+	  reporter: 'spec'
+	},
+	src: ['test/nodejs/**/api-*.js']
       }
     }
     
@@ -172,6 +203,8 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('lint', ['jshint', 'htmlhint', 'csslint:lax']);
-  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('test', ['mochaTest:javascript',
+			      'mochaTest:nodejs']);
+  grunt.registerTask('api-test', ['mochaTest:nodejsApiTest']);
   grunt.registerTask('server', ['test', 'express:dev', 'watch']);
 };

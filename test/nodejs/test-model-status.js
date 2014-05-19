@@ -52,9 +52,51 @@ describe('Model : Status', function() {
     });
   });
 
+  describe('Adding two status', function() {
+    it('should make a new document', function(done) {
+      var status1 = new Status({
+	siteName: 'accounts',
+	url: 'http://accounts.openknowl.com',
+	date: new Date(),
+	imagePath: '/home/anster/Workspace/',
+	serviceStatus: true
+      });
+
+      var status2 = new Status({
+	siteName: 'accounts',
+	url: 'http://accounts.openknowl.com',
+	date: new Date(),
+	imagePath: '/home/anster/Workspace/',
+	serviceStatus: true
+      });
+
+      status1.save(function(err) {
+	if (err) {
+	  should.fail(err);
+	}
+
+	status2.save(function(err) {
+	  if (err) {
+	    should.throwError(err);
+	  }
+
+	  Status.find({}, function(err, result) {
+	    if (err) {
+	      should.fail(err);
+	    }
+
+	    result.should.have.length(2);
+	    done();
+	  });
+	});
+      });
+
+    });
+  });
+
   after(function() {
-    Status.collection.drop();
     mongoose.disconnect();
   });
+
 
 });

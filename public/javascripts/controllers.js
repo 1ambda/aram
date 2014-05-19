@@ -6,11 +6,12 @@ angular.module('ForceRevivalApp.controllers', []).
     mainCtrl
   ]);
 
-function mainCtrl($scope, SpookyStart, SpookyStop) {
+function mainCtrl($scope, SpookyStart, SpookyStop, Images) {
   'use strict';
 
   $scope.text = 'Welcome AngularJS';
-  
+
+  // TODO: Consume Image API
   $scope.startSpooky = function() {
     SpookyStart.get(function() {
     });
@@ -18,7 +19,6 @@ function mainCtrl($scope, SpookyStart, SpookyStop) {
 
   $scope.stopSpooky = function() {
     SpookyStop.get(function() {
-      
     });
   };
 }

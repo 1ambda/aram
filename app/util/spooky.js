@@ -27,6 +27,8 @@ module.exports =
 	throw err;
       }
 
+      spooky.setMaxListeners(15);
+
       spooky.start(url);
       spooky.then([{
 	siteName: siteName,
@@ -64,16 +66,6 @@ module.exports =
       }
     });
 
-    spooky.on('console', function (line) {
-      console.log(line);
-    });
-
-    spooky.on('log', function (log) {
-      if (log.space === 'remote') {
-	console.log(log.message.replace(/ \- .*/, ''));
-      }
-    });
-
     spooky.on('save', function(object) {
       var Status = mongoose.model('Status');
       var status = new Status(object);
@@ -84,6 +76,7 @@ module.exports =
 	  return;
 	}
 
+	spooky.removeAllListeners();
 	if (done) {
 	  done();
 	}

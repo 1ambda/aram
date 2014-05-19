@@ -24,7 +24,7 @@ module.exports = function(app) {
     .get(spooky.stop);
 
   api.route('/api/v1/images/:site')
-    .get(image.getSiteStatusById);
+    .get(image.getSiteStatusBySiteName);
 
   app.use('/', api);
 };

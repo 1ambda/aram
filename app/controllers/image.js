@@ -1,17 +1,15 @@
 var mongoose = require('mongoose'),
     Status = mongoose.model('Status');
 
-
-
-exports.getSiteStatusById = function(req, res) {
+exports.getSiteStatusBySiteName = function(req, res) {
   'use strict';
 
-  Status.find({}, function(err, results) {
+  Status.find({ siteName: req.params.site }, function(err, results) {
     if(err) {
       console.log(err);
       res.send(503);
     }
-    res.send(results);
-    
+
+    res.json(results);
   });
 };
