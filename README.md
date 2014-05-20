@@ -1,20 +1,15 @@
 # 500-revive
 
-revive web service automatically
-
-1. passport-local, facebook, google
-2. BDD using mocha
-3. `spookyjs` with `casperJS`, `phantomJS`
+automatically recover webservice
 
 ### Todo
 
-1. spooky.js save function refac to use 'nick'
-2. AngularJS, angular-google-chart
-3. ~~bootstrap model~~
-4. ~~spooky.js refactoring~~
-5. ~~save status data in spooky.js~~
+1. seperate spooky script
+2. refactoring architecture
+3. grunt build script [Use this](https://github.com/sindresorhus/grunt-shell)
+4. grunt-karma [Use this](https://github.com/karma-runner/grunt-karma)
+5. angularJS, angular-google-chart [Use this](http://plnkr.co/edit/E4iPtQ?p=preview)
 
-- semantic-ui
 - nodemailer
 - Grunt minify, uglify script and css
 - less, grunt-contrib-less

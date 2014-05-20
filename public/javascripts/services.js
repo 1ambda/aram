@@ -20,3 +20,13 @@ service.factory('ImageFactory', function($resource) {
   });
 });
 
+service.factory('MathService', function() {
+  'use strict';
+  
+  return {
+    sum: function(a, b) {
+      return a + b;
+    }
+  };
+});
+

@@ -12,8 +12,6 @@ function mainCtrl($scope, SpookyStart, SpookyStop, ImageFactory) {
 
   $scope.text = 'Welcome AngularJS';
 
-  ImageFactory.get({site: 'accounts'});
-
   $scope.startSpooky = function() {
     SpookyStart.get(function() {
     });
