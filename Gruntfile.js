@@ -202,7 +202,7 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('lint', ['jshint', 'htmlhint', 'csslint:lax']);
-  grunt.registerTask('test', ['mochaTest:nodejs']);
+  grunt.registerTask('test', ['mochaTest:nodejs', 'karma:unit:start']);
   grunt.registerTask('api-test', ['mochaTest:nodejsApiTest']);
-  grunt.registerTask('server', ['lint', 'test', 'karma:unit:start', 'express:dev', 'watch']);
+  grunt.registerTask('server', ['lint', 'test', 'express:dev', 'watch']);
 };

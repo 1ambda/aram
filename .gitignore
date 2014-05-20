@@ -3,7 +3,8 @@ public/bower_components/
 
 .tern-port
 
-public/site-images/
+public/site-images/*
+!public/site-images/.gitkeep
 
 !.gitkeep
 
