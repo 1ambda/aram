@@ -3,15 +3,17 @@ angular.module('ForceRevivalApp.controllers', []).
     '$scope',
     'SpookyStart',
     'SpookyStop',
+    'ImageFactory',
     mainCtrl
   ]);
 
-function mainCtrl($scope, SpookyStart, SpookyStop, Images) {
+function mainCtrl($scope, SpookyStart, SpookyStop, ImageFactory) {
   'use strict';
 
   $scope.text = 'Welcome AngularJS';
 
-  // TODO: Consume Image API
+  ImageFactory.get({site: 'accounts'});
+
   $scope.startSpooky = function() {
     SpookyStart.get(function() {
     });
