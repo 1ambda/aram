@@ -4,6 +4,7 @@ describe('Services', function() {
   'use strict';
 
   chai.should();
+  
 
   beforeEach(module('ForceRevivalApp'));
 

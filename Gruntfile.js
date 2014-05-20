@@ -100,19 +100,17 @@ module.exports = function(grunt) {
 	livereload: true
       },
 
-      javascriptTest: {
-	files: ['public/javascripts/**/*.js',
-		'test/javascript/**/test-*.js'],
-	tasks: ['mochaTest:javascript'],
+      karma: {
+	files: ['public/javascripts/**/*.js', 'test/javascript/**/*.js'],
+	tasks: ['karma:unit:run'],
 	options: {
-	  livereload: false,
-	  spwan: true
+	  livereload: false
 	}
       },
-      
+
       javascript: {
 	files: ['public/javascripts/**/*.js'],
-	tasks: ['jshint:javascript', 'mochaTest:javascript']
+	tasks: ['jshint:javascript']
       },
 
       css: {
@@ -142,6 +140,7 @@ module.exports = function(grunt) {
 	  livereload: false
 	}
       },
+
 
       // nodejsApiTest: {
       // 	files: ['app/controllers/**/*.js', 'app/router.js',
@@ -175,13 +174,6 @@ module.exports = function(grunt) {
     },
 
     mochaTest: {
-      javascript: {
-	options: {
-	  reporter: 'spec'
-	},
-	src: ['test/javascript/**/test-*.js']
-      },
-
       nodejs: {
 	options: {
 	  reporter: 'spec'
@@ -195,6 +187,13 @@ module.exports = function(grunt) {
 	},
 	src: ['test/nodejs/**/api-*.js']
       }
+    },
+
+    karma: {
+      unit: {
+	configFile: 'karma.conf.js',
+	background: true
+      }
     }
     
   });
@@ -203,8 +202,7 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('lint', ['jshint', 'htmlhint', 'csslint:lax']);
-  grunt.registerTask('test', ['mochaTest:javascript',
-			      'mochaTest:nodejs']);
+  grunt.registerTask('test', ['mochaTest:nodejs']);
   grunt.registerTask('api-test', ['mochaTest:nodejsApiTest']);
-  grunt.registerTask('server', ['test', 'express:dev', 'watch']);
+  grunt.registerTask('server', ['lint', 'test', 'karma:unit:start', 'express:dev', 'watch']);
 };
