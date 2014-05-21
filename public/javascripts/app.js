@@ -2,5 +2,7 @@
 
 angular.module('ForceRevivalApp', [
   'ForceRevivalApp.services',
-  'ForceRevivalApp.controllers']);
+  'ForceRevivalApp.controllers',
+  'ForceRevivalApp.directives'
+]);
 

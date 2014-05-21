@@ -58,10 +58,9 @@ async.forever(
 	  next();
 	}
       );
-    }, second * 20);
+    }, second * 300);
   },
-  function(err) {
-  }
+  function(err) {}
 );
 
 

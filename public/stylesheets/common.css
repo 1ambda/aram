@@ -18,3 +18,8 @@ body {
 .ui.transparent.menu {
     opacity: 0.95;
 }
+
+.google-chart {
+    width: 900px;
+    height: 200px;
+}

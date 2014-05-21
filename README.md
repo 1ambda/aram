@@ -2,15 +2,18 @@
 
 automatically recover webservice
 
+<br>
 ### Todo
 
-1. seperate spooky script
-2. refactoring architecture
-3. grunt build script [Use this](https://github.com/sindresorhus/grunt-shell)
-4. grunt-karma [Use this](https://github.com/karma-runner/grunt-karma)
-5. angularJS, angular-google-chart [Use this](http://plnkr.co/edit/E4iPtQ?p=preview)
-
+- angular googleChart directive refac to use backend data
 - nodemailer
+- grunt build script [Use this](https://github.com/sindresorhus/grunt-shell)
+
+~~1. seperate spooky script~~
+~~2. refactoring architecture~~
+~~4. grunt-karma [Use this](https://github.com/karma-runner/grunt-karma)~~
+~~5. angularJS, angular-google-chart [Use this](http://plnkr.co/edit/E4iPtQ?p=preview)~~
+
 - Grunt minify, uglify script and css
 - less, grunt-contrib-less
 - Logging with winston
@@ -18,7 +21,7 @@ automatically recover webservice
 - MongoDB virtual
 - csurf
 
-
+<br>
 ### Requirement
 
 ```
