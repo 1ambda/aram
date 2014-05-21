@@ -4,14 +4,20 @@ var mongoose = require('mongoose'),
 exports.getSiteStatusBySiteName = function(req, res) {
   'use strict';
 
-  Status.find({ siteName: req.params.site }, function(err, results) {
-    if(err) {
-      console.log(err);
-      res.send(503);
-    }
+  var maxDocSize = 20;
 
-    res.json(results);
-  });
+  Status.find({ siteName: req.params.site }).
+    sort({ date: -1 }).
+    limit(maxDocSize).
+    exec(function(err, docs) {
+      if (err) {
+	console.log(err);
+	res.send(503);
+	return;
+      }
+      
+      res.json(docs);
+    });
 };
 
 exports.getSiteStatus = function(req, res) {

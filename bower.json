@@ -23,8 +23,7 @@
     "angular": "latest",
     "angular-route": "latest",
     "angular-resource": "latest",
-    "angular-google-chart": "~0.0.9",
-    "angular-mocks": "~1.2.16",
-    "chai": "~1.9.1"
+    "angular-mocks": "latest",
+    "chai": "latest"
   }
 }

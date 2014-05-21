@@ -26,7 +26,13 @@ module.exports =
 	err.details = err;
 	throw err;
       }
+
+      spooky.setMaxListeners(15);
+
       spooky.start(url);
+      spooky.wait(10000, function() {
+	this.setMaxListeners(15);
+      });
       spooky.then([{
 	siteName: siteName,
 	url: url,
@@ -37,11 +43,12 @@ module.exports =
 	tagToTest: tagToTest,
 	done: done
       }, function () {
+
 	var current = new Date();
 	var dateString = current.toLocaleString('en-US').replace(/\s/g, '_');
 	this.captureSelector(saveDir + siteName + '_' + dateString + '.' + format, tagToCapture, {
-	  format: format,
-	  quality: "100"
+	  format: format
+	  // quality: "100",
 	});
 
 	this.emit('save', {
@@ -51,13 +58,14 @@ module.exports =
 	  imagePath: imageDir + siteName + '_' + dateString + '.' + format,
 	  serviceStatus: this.exists(tagToTest) ? 'alive' : 'dead'
 	});
+
       }]);
+
       spooky.run();
     });
 
     spooky.on('error', function (e, stack) {
       console.error(e);
-
       if (stack) {
 	console.log(stack);
       }
@@ -70,12 +78,11 @@ module.exports =
       status.save(function(err) {
 	if (err) {
 	  console.log(err);
+	  
 	  return;
 	}
 
-	if (done) {
-	  done();
-	}
+	console.log('saved: ' + object.siteName);
       });
     });
   };

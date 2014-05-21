@@ -9,4 +9,6 @@ angular.module('ForceRevivalApp.controllers', []).
 
 function mainCtrl($scope) {
   'use strict';
+
+  $scope.text = "Welcome Angular";
 }

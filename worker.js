@@ -11,7 +11,6 @@ mongoose.connect(config.db);
 
 // Bootstrap models 'Status'
 require(rootDir + '/app/models/status');
-
 var requirements = [
   { "siteName" : 'accounts',
     "url" : "https://accounts.openknowl.com/public",
@@ -24,7 +23,7 @@ var requirements = [
     "tagToTest" : '#carousel' },
   { "siteName" : 'planner',
     "url" : "https://planner.openknowl.com/home",
-    "tagToTest" : '.intro' }
+    "tagToTest" : 'link' }
 ];
 
 var makeWorker = function(requirement, done) {
@@ -32,9 +31,9 @@ var makeWorker = function(requirement, done) {
 
   var saveDir = './public/site-images/',
       imageDir = 'site-images/',
-      format = 'jpg',
+      format = 'png',
       script = require(rootDir + '/app/util/spooky'),
-      tagToCapture = 'html';
+      tagToCapture = 'body';
 
   return function() {
     script(requirement.siteName, requirement.url, saveDir, imageDir, format,
@@ -48,7 +47,6 @@ async.forever(
   function(next) {
     var count  = 0;
     
-    setTimeout(function() {
       async.whilst(
 	function() { return count < requirements.length; },
 	function(callback) {
@@ -58,7 +56,6 @@ async.forever(
 	  next();
 	}
       );
-    }, second * 300);
   },
   function(err) {}
 );
