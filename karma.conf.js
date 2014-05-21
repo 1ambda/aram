@@ -27,7 +27,7 @@ module.exports = function(config) {
       'public/bower_components/chai/chai.js',
       
       // tests
-      'test/javascript/**/*.js',
+      'test/javascript/**/test-*.js',
 
       // application
       'public/javascripts/**/*.js'

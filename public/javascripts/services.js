@@ -1,32 +1,16 @@
 var service = angular.module('ForceRevivalApp.services', ['ngResource']);
 
-service.factory('SpookyStart', function($resource) {
-  'use strict';
-  
-  return $resource('/api/v1/spooky/start', {});
-});
-
-service.factory('SpookyStop', function($resource) {
-  'use strict';
-  
-  return $resource('/api/v1/spooky/stop', {});
-});
-
-service.factory('ImageFactory', function($resource) {
+service.factory('StatusFactory', function($resource) {
   'use strict';
 
-  return $resource('/api/v1/images/:site', {
+  return $resource('/api/v1/image/:site', {
     site: '@site' 
   });
 });
 
-service.factory('MathService', function() {
+service.factory('StatusesFactory', function($resource) {
   'use strict';
-  
-  return {
-    sum: function(a, b) {
-      return a + b;
-    }
-  };
+
+  return $resource('/api/v1/images/', {});
 });
 

@@ -26,7 +26,8 @@ module.exports = function(grunt) {
 	  jquery: true,
 	  node: false,
 	  globals: {
-	    angular: true
+	    angular: true,
+	    google: true
 	  }
 	  
 	}
@@ -101,7 +102,7 @@ module.exports = function(grunt) {
       },
 
       karma: {
-	files: ['public/javascripts/**/*.js', 'test/javascript/**/*.js'],
+	files: ['public/javascripts/**/*.js', 'test/javascript/**/test-*.js'],
 	tasks: ['karma:unit:run'],
 	options: {
 	  livereload: false

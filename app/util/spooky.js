@@ -18,7 +18,7 @@ module.exports =
       },
       casper: {
 	logLevel: 'debug',
-	verbose: false 
+	verbose: true 
       }
     }, function (err) {
       if (err) {
@@ -26,9 +26,6 @@ module.exports =
 	err.details = err;
 	throw err;
       }
-
-      spooky.setMaxListeners(15);
-
       spooky.start(url);
       spooky.then([{
 	siteName: siteName,
@@ -42,7 +39,7 @@ module.exports =
       }, function () {
 	var current = new Date();
 	var dateString = current.toLocaleString('en-US').replace(/\s/g, '_');
-	this.captureSelector(saveDir + dateString + '.' + format, tagToCapture, {
+	this.captureSelector(saveDir + siteName + '_' + dateString + '.' + format, tagToCapture, {
 	  format: format,
 	  quality: "100"
 	});
@@ -51,8 +48,8 @@ module.exports =
 	  siteName: siteName,
 	  url: url,
 	  date: current,
-	  imagePath: imageDir + dateString + '.' + format,
-	  serviceStatus: this.exists(tagToTest) ? true : false
+	  imagePath: imageDir + siteName + '_' + dateString + '.' + format,
+	  serviceStatus: this.exists(tagToTest) ? 'alive' : 'dead'
 	});
       }]);
       spooky.run();
@@ -76,7 +73,6 @@ module.exports =
 	  return;
 	}
 
-	spooky.removeAllListeners();
 	if (done) {
 	  done();
 	}

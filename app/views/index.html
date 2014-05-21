@@ -12,21 +12,24 @@
       <div class="container">
         <a class="item" href="/">Force-Revival</a>
         <div class="right item">
-          <div class="ui black button" ng-click="stopSpooky()">Stop</div>
+          <div class="ui black button" ng-click="">Stop</div>
 	</div>
         <div class="right item">
-          <div class="ui teal button" ng-click="startSpooky()">Start</div>
+          <div class="ui teal button" ng-click="">Start</div>
 	</div>
       </div>
     </div>
-
     
     <div class="segment">
       <div class="container">
-        <h1>{{ text }}</h1>
+	<div id="example1" style="width: 900px; height: 500;"></div>
       </div>
     </div>
 
+
+    <!-- google chart -->
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization', 'version':'1','packages':['corechart']}]}"></script>
+    <!-- bower components -->
     <script src="//localhost:35729/livereload.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="bower_components/semantic-ui/build/packaged/javascript/semantic.min.js" type="text/javascript"></script>

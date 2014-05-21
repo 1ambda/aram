@@ -1,7 +1,6 @@
 var path = require('path');
 var rootDir = path.dirname(require.main.filename);
 var home = require(path.join(rootDir, 'app/controllers/home'));
-var spooky = require(rootDir + '/app/controllers/spooky');
 var image = require(rootDir + '/app/controllers/image');
 
 module.exports = function(app) {
@@ -17,14 +16,11 @@ module.exports = function(app) {
   api.route('/')
     .get(home.index);
 
-  api.route('/api/v1/spooky/start')
-    .get(spooky.start);
+  api.route('/api/v1/image/:site').
+    get(image.getSiteStatusBySiteName);
 
-  api.route('/api/v1/spooky/stop')
-    .get(spooky.stop);
-
-  api.route('/api/v1/images/:site')
-    .get(image.getSiteStatusBySiteName);
+  api.route('/api/v1/images').
+    get(image.getSiteStatus);
 
   app.use('/', api);
 };

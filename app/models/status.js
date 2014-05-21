@@ -6,7 +6,7 @@ var StatusSchema = new Schema({
   url : { type: String, required: true },
   date: { type: Date, required: true },
   imagePath: { type: String, required: true },
-  serviceStatus: { type: Boolean, required: true }
+  serviceStatus: { type: String, required: true }
 });
 
 

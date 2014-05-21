@@ -13,3 +13,16 @@ exports.getSiteStatusBySiteName = function(req, res) {
     res.json(results);
   });
 };
+
+exports.getSiteStatus = function(req, res) {
+  'use strict';
+
+  Status.find({}, function(err, results) {
+    if (err) {
+      console.log(err);
+      res.send(503);
+    }
+
+    res.json(results);
+  });
+};
