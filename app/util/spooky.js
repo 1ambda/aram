@@ -4,11 +4,16 @@ module.exports =
     'use strict';
 
     var mongoose = require('mongoose');
+    var path = require('path');
+    var rootDir = path.dirname(require.main.filename);
+    var restart = require(rootDir + '/app/util/restart');
+    var isServiceDead = false;
 
     var Spooky;
     try {
       Spooky = require('spooky');
     } catch (e) {
+      console.log('spooky require exception');
       Spooky = require('../lib/spooky');
     }
 
@@ -22,15 +27,16 @@ module.exports =
       }
     }, function (err) {
       if (err) {
-	err = new Error('Failed to initialize SpookyJS');
-	err.details = err;
-	throw err;
+	var e = new Error('Failed to initialize SpookyJS');
+	e.details = err;
+	console.log('new Spooky err');
+	throw e;
       }
 
-      spooky.setMaxListeners(15);
-
+      var second = 1000;
+      
       spooky.start(url);
-      spooky.wait(10000, function() {
+      spooky.wait(10 * second , function() {
 	this.setMaxListeners(15);
       });
       spooky.then([{
@@ -64,22 +70,63 @@ module.exports =
       spooky.run();
     });
 
+    // spooky.on('console', function (line) {
+    //   console.log(line);
+    // });
+
     spooky.on('error', function (e, stack) {
       console.error(e);
       if (stack) {
 	console.log(stack);
       }
+
+      console.log('spooky.on error');
+    });
+
+    spooky.on('run.complete', function() {
+
+      if (isServiceDead) {
+	console.log('service [' + siteName + '] died');
+
+	// restart knowlath
+	if (siteName === 'accounts') {
+	  var restartHistory = new RestartHistory({
+	    siteName: siteName
+	  });
+
+	  restartHistory.save(function(err) {
+	    if (err) {
+	      console.log('mongoDB error occured\n' + err);
+
+	      if (done) {
+		done();
+	      }
+	    } else {
+	      console.log('restarting service [' + siteName + ']...');
+	      restart(done);
+	    }
+	  });
+	  
+	} else {
+	  if (done) {
+	    done();
+	  }
+	}
+      }
     });
 
     spooky.on('save', function(object) {
       var Status = mongoose.model('Status');
+      var RestartHistory = mongoose.model('RestartHistory');
       var status = new Status(object);
+
+      if (status.serviceStatus === 'dead') {
+	isServiceDead = true;
+      }
 
       status.save(function(err) {
 	if (err) {
 	  console.log(err);
-	  
-	  return;
 	}
 
 	console.log('saved: ' + object.siteName);

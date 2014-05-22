@@ -45,17 +45,24 @@ var second = 1000;
 
 async.forever(
   function(next) {
-    var count  = 0;
+
+    setTimeout(makeWhilst(), 20 * second);
     
-      async.whilst(
-	function() { return count < requirements.length; },
-	function(callback) {
-	  makeWorker(requirements[count++], callback)();
-	},
-	function(err) {
-	  next();
-	}
-      );
+    function makeWhilst () {
+      var count  = 0;
+      
+      return function () {
+	async.whilst(
+	  function() { return count < requirements.length; },
+	  function(callback) {
+	    makeWorker(requirements[count++], callback)();
+	  },
+	  function(err) {
+	    next();
+	  }
+	);
+      };
+    }
   },
   function(err) {}
 );
