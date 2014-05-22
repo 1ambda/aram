@@ -46,7 +46,7 @@ var second = 1000;
 async.forever(
   function(next) {
 
-    setTimeout(makeWhilst(), 20 * second);
+    setTimeout(makeWhilst(), 40 * second);
     
     function makeWhilst () {
       var count  = 0;

@@ -87,30 +87,29 @@ module.exports =
     spooky.on('run.complete', function() {
 
       if (isServiceDead) {
-	console.log('service [' + siteName + '] died');
+	console.log((new Date).toLocaleString() + ': service [' + siteName + '] died');
 
 	// restart knowlath
 	if (siteName === 'accounts') {
-	  var RestartHistory = mongoose.model('RestartHistory');
-	  var restartHistory = new RestartHistory({
-	    siteName: siteName
-	  });
+	  console.log('restarting service [' + siteName + ']...');
 
-	  restartHistory.save(function(err) {
-	    if (err) {
-	      console.log('mongoDB error occured\n' + err);
-	      done();
-	    } else {
-	      console.log('restarting service [' + siteName + ']...');
-	      restart(done);
-	    }
-	  });
-	  
+	  var exec = require('child_process').exec;
+	  exec("node /home/knowlauth/restart.js", 
+		  function(err, stdout, stderr) {
+		    if (err) {
+		      console.log('err : ' + err);
+		    }
+
+		    console.log((new Date).toLocaleString() + ': service [accounts] started');
+		    done();
+		  });
+
+	  // restart(done);
 	} else {
 	  done();
 	}
       } else {
-	console.log('service [' + siteName + '] alive');
+	console.log((new Date).toLocaleString() + ': service [' + siteName + '] alive');
 	done();
       }
     });
