@@ -81,6 +81,7 @@ module.exports =
       }
 
       console.log('spooky.on error');
+      done();
     });
 
     spooky.on('run.complete', function() {
