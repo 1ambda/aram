@@ -1,7 +1,5 @@
 var module = angular.module('ForceRevivalApp.directives', []);
 
-
-// <div google-area-chart site="accounts" color="red">
 module.directive('googleAreaChart', ['StatusFactory', function(StatusFactory) {
   'use strict';
   
@@ -38,7 +36,7 @@ module.directive('googleAreaChart', ['StatusFactory', function(StatusFactory) {
           vAxis: {minValue: 0,
 		  ticks: [{v:0, f: "dead"}, {v:1, f: "alive"}, {v:1.25, f:""}]},
 	  colors: [$attrs.color || 'red' ],
-	  focusTarget: 'categoty',
+	  focusTarget: 'category',
 	  tooltip: { isHtml: true }
 	};
 
@@ -50,8 +48,11 @@ module.directive('googleAreaChart', ['StatusFactory', function(StatusFactory) {
 }]);
 
 function createCustomHTMLContent (imagePath, date, state) {
-  return '<div style="padding 5px; 5px; 5px; 5px">' +
-    '<img src="' + imagePath + '"><br/>' +
+  'use strict';
+  
+  return '<div style="padding 5px; 5px; 5px; 5px;">' +
+    '<img src="' + imagePath + '" style="width: 100px; height: 75px;"/>' +
+    // '<p>Time: ' + (new Date(date)).toLocaleString() + '</p>' +
     '</div>';
 }
 
