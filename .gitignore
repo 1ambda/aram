@@ -5,6 +5,7 @@ public/bower_components/
 
 public/site-images/*
 !public/site-images/.gitkeep
+log/
 
 !.gitkeep
 

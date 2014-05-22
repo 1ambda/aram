@@ -6,7 +6,6 @@ module.exports =
     var mongoose = require('mongoose');
     var path = require('path');
     var rootDir = path.dirname(require.main.filename);
-    var restart = require(rootDir + '/app/util/restart');
     var isServiceDead = false;
 
     var Spooky;
