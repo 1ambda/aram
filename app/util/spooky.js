@@ -90,6 +90,7 @@ module.exports =
 
 	// restart knowlath
 	if (siteName === 'accounts') {
+	  var RestartHistory = mongoose.model('RestartHistory');
 	  var restartHistory = new RestartHistory({
 	    siteName: siteName
 	  });
@@ -97,10 +98,7 @@ module.exports =
 	  restartHistory.save(function(err) {
 	    if (err) {
 	      console.log('mongoDB error occured\n' + err);
-
-	      if (done) {
-		done();
-	      }
+	      done();
 	    } else {
 	      console.log('restarting service [' + siteName + ']...');
 	      restart(done);
@@ -108,16 +106,16 @@ module.exports =
 	  });
 	  
 	} else {
-	  if (done) {
-	    done();
-	  }
+	  done();
 	}
+      } else {
+	console.log('service [' + siteName + '] alive');
+	done();
       }
     });
 
     spooky.on('save', function(object) {
       var Status = mongoose.model('Status');
-      var RestartHistory = mongoose.model('RestartHistory');
       var status = new Status(object);
 
       if (status.serviceStatus === 'dead') {
@@ -128,8 +126,6 @@ module.exports =
 	if (err) {
 	  console.log(err);
 	}
-
-	console.log('saved: ' + object.siteName);
       });
     });
   };

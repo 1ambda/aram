@@ -2,7 +2,7 @@ module.exports = function(done) {
   'use strict';
   
   var spawn = require('child_process').spawn;
-  var child = spawn('ls', ['-al']);
+  var child = spawn('su', ['-l knowlauth -c ../forever_start.sh']);
 
   child.stdout.on('data', function(chunk) {
 
