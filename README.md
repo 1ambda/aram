@@ -5,17 +5,16 @@ Action Runner and Monitor
 <br>
 ### 1. Guide
 
-`ARAM` consists of two parts. `Runner` and `Monitor`
+**ARAM** consists of two parts. **Runner** and **Monitor**
 
 <br>
 #### Runner
-`Runner` captures website and checks whether service is availale by finding DOM and if not `Runner` executes **actions** written in node.js.
-<br>
+**Runner** captures websites and checks whether services are availale by finding DOM and if not **Runner** executes **actions** written in node.js.
 <br>
 **action** which is node.js script should be defined in **/runner/util/requirements.js** and exists in **/runner/actions/**
 <br>
-<br>
-every **action** exports function takes at least 1 arguments which is `done` callback **must** be called in **action** for instance unless runner will be stop
+Every **action** must exports a function takes at least 1 argument. 
+The first argument is `done` callback which is should be called in **action** unless runner will be stop.
 <br>
 ```
 module.exports = function(done, siteName) {
