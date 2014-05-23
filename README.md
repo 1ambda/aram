@@ -3,12 +3,12 @@
 Action Runner and Monitor
 
 <br>
-### Guide
+### 1. Guide
 
 `ARAM` consists of two parts. `Runner` and `Monitor`
 
 <br>
-### Runner
+##### Runner
 `Runner` captures website and checks whether service is availale by finding DOM and if not `Runner` executes **actions** written in node.js.
 <br>
 <br>
@@ -35,25 +35,13 @@ module.exports = function(done, siteName) {
 ```
 
 <br>
-### Monitor
+##### Monitor
 
 `Monitor` is web-service which provides other website's status using charts and images recorded by `Runner`. 
 
-<br>
-### Todo
-
-- Monitor diR structure
-- action : nodemailer
-- grunt build script [Use this](https://github.com/sindresorhus/grunt-shell)
-- Grunt minify, uglify script and css
-- less, grunt-contrib-less
-- Logging with winston
-- passport
-- MongoDB virtual
-- csurf
 
 <br>
-### Installation Guide
+### 2. Installation Guide
 
 ```
 $ sudo npm install -g phantomjs
@@ -72,7 +60,7 @@ $ cd aram
 ```
 
 <br>
-### Development Guide
+### 3. Development Guide
 
 ```
 npm install -g phantomjs
@@ -83,3 +71,15 @@ npm install -g less
 npm install -g supervisor
 ```
 
+<br>
+### 4. Todo
+
+- Monitor diR structure
+- action : nodemailer
+- grunt build script [Use this](https://github.com/sindresorhus/grunt-shell)
+- Grunt minify, uglify script and css
+- less, grunt-contrib-less
+- Logging with winston
+- passport
+- MongoDB virtual
+- csurf
