@@ -5,6 +5,10 @@ automatically recover webservice
 <br>
 ### Todo
 
+- actions Callback
+- Monitor diR structure
+- get requirments in whilst 
+
 - angular googleChart directive refac to use backend data
 - nodemailer
 - grunt build script [Use this](https://github.com/sindresorhus/grunt-shell)
