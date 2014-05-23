@@ -13,14 +13,8 @@ mongoose.connect(config.db);
 require(rootDir + '/models/status');
 require(rootDir + '/models/action');
 
-// Get requirements from config.js
-var requirements = config.requirements;
 var second = 1000;
 
-if (!requirements) {
-  var err = new Error('Can\'t find requirements. Check your config.js');
-  throw err;
-}
 
 // Handle uncaught exception
 process.on('uncaughtException', function(err) {
@@ -52,10 +46,18 @@ var makeWorker = function(requirement, done) {
 async.forever(
   function(next) {
 
-    setTimeout(makeWhilst(), 40 * second);
+    setTimeout(makeWhilst(), 120 * second);
     
     function makeWhilst () {
       var count  = 0;
+
+      // Get requirements from config.js
+      var requirements = require(rootDir + '/config/requirements').context;
+      
+      if (!requirements) {
+	var err = new Error('Can\'t find requirements. Check your config.js');
+	throw err;
+      }
       
       return function () {
 	async.whilst(

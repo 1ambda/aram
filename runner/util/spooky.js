@@ -114,7 +114,7 @@ module.exports =
 	  
 	    // do action for service
 	    console.log('do action for service [' + siteName + ']...');
-	    script(siteName, done);
+	    script(done, siteName);
 	  });
 
 	} else {
