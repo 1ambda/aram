@@ -8,7 +8,7 @@ Action Runner and Monitor
 `ARAM` consists of two parts. `Runner` and `Monitor`
 
 <br>
-##### Runner
+#### Runner
 `Runner` captures website and checks whether service is availale by finding DOM and if not `Runner` executes **actions** written in node.js.
 <br>
 <br>
@@ -35,7 +35,7 @@ module.exports = function(done, siteName) {
 ```
 
 <br>
-##### Monitor
+#### Monitor
 
 `Monitor` is web-service which provides other website's status using charts and images recorded by `Runner`. 
 
