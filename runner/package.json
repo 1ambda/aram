@@ -4,7 +4,7 @@
   "description": "",
   "main": "worker.js",
   "scripts": {
-    "start": "node worker.js",
+    "start": "supervisor runner.js > ../log/runner.log &",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": "ansterd@nate.com",
