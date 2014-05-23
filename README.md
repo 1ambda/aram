@@ -11,12 +11,14 @@ Action Runner and Monitor
 #### \# Runner
 **Runner** captures websites and checks whether services are availale by finding DOM unless **Runner** executes **actions**  
 <br>
-**action** which is node.js script should be defined in **/runner/util/requirements.js** and exists in **/runner/actions/**  
+**action** is a node.js script registered in **/runner/util/requirements.js** and exists in **/runner/actions/**  
 <br>
 Every **action** must exports a function takes at least 1 argument. 
 The first argument is `done` callback which is should be called in **action** unless runner will be stop.
 <br>
 ```
+// /aram/runner/actions/sample_action.js
+
 module.exports = function(done, siteName) {
   var exec = require('child_process').exec;
   exec("node /home/auth/restart.js", function(err, stdout, stderr) {
@@ -31,6 +33,24 @@ module.exports = function(done, siteName) {
     done();
   });
 };
+```
+<br>
+```
+// /aram/runner/config/requirements.js
+// action is optional
+
+module.exports = {
+  "context": [
+    { "siteName" : 'accounts',
+      "url" : "https://accounts.service.com/public",
+      "tagToTest" : '#info-welcometex',
+      "action": 'knowlauth_restart.js' },
+    { "siteName" : 'story',
+      "url" : "https://site.service.com",
+      "tagToTest" : '#welcome' }
+  ]
+};
+
 ```
 
 <br>
