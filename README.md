@@ -8,7 +8,7 @@ Action Runner and Monitor
 **ARAM** consists of two parts. **Runner** and **Monitor**
 
 <br>
-#### \#Runner
+#### \# Runner
 **Runner** captures websites and checks whether services are availale by finding DOM and if not **Runner** executes **actions**  
 <br>
 **action** which is node.js script should be defined in **/runner/util/requirements.js** and exists in **/runner/actions/**  
