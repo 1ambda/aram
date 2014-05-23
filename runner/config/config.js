@@ -6,7 +6,7 @@ module.exports = {
     "requirements": [
       { "siteName" : 'accounts',
 	"url" : "https://accounts.openknowl.com/public",
-	"tagToTest" : '#info-welcometex',
+	"tagToTest" : '#info-welcometext',
 	"action": 'knowlauth_restart.js' },
       { "siteName" : 'company',
 	"url" : "https://company.openknowl.com/",
