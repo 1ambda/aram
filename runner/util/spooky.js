@@ -107,8 +107,6 @@ module.exports =
 	    actionFunction: script.toString()
 	  });
 
-	  console.log('before save');
-
 	  history.save(function(err) {
 	    if (err) {
 	      console.log('Failed to save action history');

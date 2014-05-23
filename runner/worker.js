@@ -52,7 +52,7 @@ var makeWorker = function(requirement, done) {
 async.forever(
   function(next) {
 
-    setTimeout(makeWhilst(), 10 * second);
+    setTimeout(makeWhilst(), 40 * second);
     
     function makeWhilst () {
       var count  = 0;

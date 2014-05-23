@@ -22,7 +22,7 @@
     "morgan": "latest",
     "passport": "latest",
     "passport-facebook": "latest",
-    "serve-favicon": "latest",
+    "serve-favicon": "latest"
   },
   "devDependencies": {
     "grunt": "latest",
