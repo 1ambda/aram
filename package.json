@@ -23,7 +23,6 @@
     "passport": "latest",
     "passport-facebook": "latest",
     "serve-favicon": "latest",
-    "spooky": "latest"
   },
   "devDependencies": {
     "grunt": "latest",

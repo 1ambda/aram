@@ -1,13 +1,21 @@
 module.exports =
   function(siteName, url, saveDir, imageDir, format,
-	   tagToCapture, tagToTest, done) {
+	   tagToCapture, tagToTest, done, action) {
     'use strict';
 
-    var mongoose = require('mongoose');
-    var path = require('path');
-    var rootDir = path.dirname(require.main.filename);
+    // Load models
+    var mongoose = require('mongoose'),
+	Action = mongoose.model('Action'),
+	Status = mongoose.model('Status');
+
+    // Get rootDir
+    var path = require('path'),
+	rootDir = path.dirname(require.main.filename);
+
+    // Variable to check whether the service is dead
     var isServiceDead = false;
 
+    // Init spooky
     var Spooky;
     try {
       Spooky = require('spooky');
@@ -36,7 +44,6 @@ module.exports =
       
       spooky.start(url);
       spooky.wait(10 * second , function() {
-	this.setMaxListeners(15);
       });
       spooky.then([{
 	siteName: siteName,
@@ -86,35 +93,42 @@ module.exports =
     spooky.on('run.complete', function() {
 
       if (isServiceDead) {
-	console.log((new Date).toLocaleString() + ': service [' + siteName + '] died');
+	console.log((new Date()).toLocaleString() + ': service [' + siteName + '] died');
 
-	// restart knowlath
-	if (siteName === 'accounts') {
-	  console.log('restarting service [' + siteName + ']...');
+	// restart logic
+	if (action) {
 
-	  var exec = require('child_process').exec;
-	  exec("node /home/knowlauth/restart.js", 
-		  function(err, stdout, stderr) {
-		    if (err) {
-		      console.log('err : ' + err);
-		    }
+	  var script = require(rootDir + '/actions/' + action);
+	  
+	  // save action history
+	  var history = new Action({
+	    siteName: siteName,
+	    actionFile: rootDir + '/actions/' + action,
+	    actionFunction: script.toString()
+	  });
 
-		    console.log((new Date).toLocaleString() + ': service [accounts] started');
-		    done();
-		  });
+	  console.log('before save');
 
-	  // restart(done);
+	  history.save(function(err) {
+	    if (err) {
+	      console.log('Failed to save action history');
+	    }
+	  
+	    // do action for service
+	    console.log('do action for service [' + siteName + ']...');
+	    script(siteName, done);
+	  });
+
 	} else {
 	  done();
 	}
       } else {
-	console.log((new Date).toLocaleString() + ': service [' + siteName + '] alive');
+	console.log((new Date()).toLocaleString() + ': service [' + siteName + '] alive');
 	done();
       }
     });
 
     spooky.on('save', function(object) {
-      var Status = mongoose.model('Status');
       var status = new Status(object);
 
       if (status.serviceStatus === 'dead') {

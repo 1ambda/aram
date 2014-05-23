@@ -2,7 +2,7 @@ var path = require('path');
 var rootDir = path.dirname(require.main.filename);
 var mongoose = require('mongoose');
 var env = process.env.NODE_ENV || 'development';
-var config = require(rootDir + '/app/config/config')[env];
+var config = require(rootDir + '/config/config')[env];
 var fs = require('fs');
 var async = require('async');
 
@@ -10,43 +10,49 @@ var async = require('async');
 mongoose.connect(config.db);
 
 // Bootstrap models 'Status'
-require(rootDir + '/app/models/status');
-var requirements = [
-  { "siteName" : 'accounts',
-    "url" : "https://accounts.openknowl.com/public",
-    "tagToTest" : '#info-welcometext' },
-  { "siteName" : 'company',
-    "url" : "https://company.openknowl.com/",
-    "tagToTest" : '#sidebar' },
-  { "siteName" : 'camp',
-    "url" : "https://camp.openknowl.com/",
-    "tagToTest" : '#carousel' },
-  { "siteName" : 'planner',
-    "url" : "https://planner.openknowl.com/home",
-    "tagToTest" : 'link' }
-];
+require(rootDir + '/models/status');
+require(rootDir + '/models/action');
+
+// Get requirements from config.js
+var requirements = config.requirements;
+var second = 1000;
+
+if (!requirements) {
+  var err = new Error('Can\'t find requirements. Check your config.js');
+  throw err;
+}
+
+// Handle uncaught exception
+process.on('uncaughtException', function(err) {
+  console.log(err);
+});
 
 var makeWorker = function(requirement, done) {
   'use strict';
 
-  var saveDir = './public/site-images/',
+  // Args for /util/spooky.js
+  var saveDir = '../public/site-images/',
       imageDir = 'site-images/',
       format = 'png',
-      script = require(rootDir + '/app/util/spooky'),
-      tagToCapture = 'body';
+      script = require(rootDir + '/util/spooky'),
+      tagToCapture = 'body',
+      action = null; // action could be null if not defined in config.js
+
+  if (requirement.action) {
+    action = requirement.action;
+  }
 
   return function() {
     script(requirement.siteName, requirement.url, saveDir, imageDir, format,
-	   tagToCapture, requirement.tagToTest, done);
+	   tagToCapture, requirement.tagToTest, done, action);
   };
 };
 
-var second = 1000;
 
 async.forever(
   function(next) {
 
-    setTimeout(makeWhilst(), 40 * second);
+    setTimeout(makeWhilst(), 10 * second);
     
     function makeWhilst () {
       var count  = 0;

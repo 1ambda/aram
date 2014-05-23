@@ -1,6 +1,8 @@
 node_modules/
 public/bower_components/
 
+worker/node_modules/
+
 .tern-port
 
 public/site-images/*

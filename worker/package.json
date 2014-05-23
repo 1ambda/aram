@@ -1,0 +1,17 @@
+{
+  "name": "worker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "worker.js",
+  "scripts": {
+    "start": "node worker.js",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": "ansterd@nate.com",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^0.9.0",
+    "mongoose": "^3.8.11",
+    "spooky": "^0.2.4"
+  }
+}
