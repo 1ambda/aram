@@ -9,7 +9,7 @@ Action Runner and Monitor
 
 <br>
 #### \# Runner
-**Runner** captures websites and checks whether services are availale by finding DOM and if not **Runner** executes **actions**  
+**Runner** captures websites and checks whether services are availale by finding DOM unless **Runner** executes **actions**  
 <br>
 **action** which is node.js script should be defined in **/runner/util/requirements.js** and exists in **/runner/actions/**  
 <br>
@@ -36,7 +36,7 @@ module.exports = function(done, siteName) {
 <br>
 #### \# Monitor
 
-`Monitor` is web-service which provides other website's status using charts and images recorded by `Runner`. 
+**Monitor** is web-service which provides other website's status using charts and images recorded by **Runner**. 
 
 
 <br>
