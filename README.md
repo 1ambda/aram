@@ -16,7 +16,7 @@ Action Runner and Monitor
 Every **action** must exports a function takes at least 1 argument. 
 The first argument is `done` callback which is should be called in **action** unless runner will be stop.
 <br>
-```
+```javascript
 // /aram/runner/actions/sample_action.js
 
 module.exports = function(done, siteName) {
@@ -35,7 +35,7 @@ module.exports = function(done, siteName) {
 };
 ```
 <br>
-```
+```javascript
 // /aram/runner/config/requirements.js
 // action is optional
 
